@@ -3,7 +3,7 @@ import { Navigate, Outlet } from "react-router-dom"
 
 
 const Auth = () => {
-    const authenticator = JSON.parse(localStorage.getItem('drivenplus'));
+    const authenticator = JSON.parse(localStorage.getItem('my-wallet'));
     return authenticator
 }
 

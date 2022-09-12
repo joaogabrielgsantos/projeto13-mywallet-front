@@ -13,8 +13,6 @@ const ProtectedSignIn = () => {
     if (isAuth && isAuth.membership) {
         return <Navigate to="/home" replace />
 
-    } else if (isAuth && isAuth.membership === null) {
-        return <Navigate to="/subscriptions" replace />
     } else {
         return <Outlet />
     }

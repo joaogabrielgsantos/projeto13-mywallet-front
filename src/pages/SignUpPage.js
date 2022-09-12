@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "../components/Container";
 import Inputs from "../components/Inputs";
 import styled from "styled-components";
 import { Logo } from "./SignInPage";
+import { postSignUp } from "../services/MyWallet";
+
 
 
 function SignUpPage() {
@@ -15,8 +17,7 @@ function SignUpPage() {
     const [disable, setDisable] = useState(false)
     const [textButton, setTextButton] = useState("Cadastrar")
 
-
-
+    const navigate = useNavigate();
 
 
 
@@ -25,7 +26,29 @@ function SignUpPage() {
         setDisable(true);
         setTextButton("Cadastrando...")
 
+        const body = {
+            email, name, password
+        }
 
+        if (password !== confirmPassword){
+            alert("Senha inválida!")
+            window.location.reload(false)
+        } else {
+
+            postSignUp(body).then(response => {
+                console.log(response)
+                navigate("/");
+            })
+    
+            postSignUp(body).catch(() => {
+                alert("Não foi possível realizar o cadastro")
+                window.location.reload(false)
+            })
+
+
+        }
+
+    
 
     }
 
@@ -51,8 +74,6 @@ function SignUpPage() {
 
         </Container>
     )
-
-
 }
 
 export default SignUpPage;
